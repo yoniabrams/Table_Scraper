@@ -1,5 +1,5 @@
 # Table Scraper
-Thi is a command-line web scraper app which extracts data from aby table in any Wikipedia page (with a table)
+This is a command-line web scraper app which extracts data from any table in any Wikipedia page (with a table)
 
 ## Motivation
 Have you ever wanted to quickly run some statistics or visuals on a [Wikipedia](wikipedia.com) table? 
