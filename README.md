@@ -68,7 +68,7 @@ options:
 
 ### Required parameters:
 1. URL of Wikipedia page
-2. Either the table-id or the table-class attribute from the 
+2. Either the table-id or the table-class attribute from the table element (I'll say more about this soon).
 
 ### Example usage:
 1. Let's say you want to learn about the most densely populated cities in the EU, so you go to this webpage [here](https://en.wikipedia.org/wiki/List_of_European_Union_cities_proper_by_population_density).
