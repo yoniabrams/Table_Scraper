@@ -24,7 +24,7 @@ def get_table_columns(soup: BeautifulSoup, table_id=None, table_class=None):
 
     headers = []
     for column in table.find_all('th'):
-        title = column.text
+        title = column.text.strip()
         headers.append(title)
     return table, headers
 
@@ -103,12 +103,20 @@ def scrape_table(
 
     wiki_table, column_names = get_table_columns(wiki_soup, table_id=table_id, table_class=TABLE_CLASS)
 
-    data, citations = populate_dataframe(
-        wiki_table,
-        column_names,
-        with_citation=with_citation,
-        citation_base_url=citation_base_url
-    )
+    if with_citation:
+        data, citations = populate_dataframe(
+            wiki_table,
+            column_names,
+            with_citation=with_citation,
+            citation_base_url=citation_base_url
+        )
+    else:
+        data = populate_dataframe(
+            wiki_table,
+            column_names,
+            with_citation=with_citation,
+            citation_base_url=citation_base_url
+        )
 
     if data_path is None:
         data_path = 'data.csv'  # switch to a default value
@@ -116,8 +124,9 @@ def scrape_table(
         citation_path = 'citations.csv'
 
     data.to_csv(data_path)
-    citations_df = pd.DataFrame(citations)
-    citations_df.to_csv(citation_path)
+    if with_citation:
+        citations_df = pd.DataFrame(citations)
+        citations_df.to_csv(citation_path)
 
 
 if __name__ == '__main__':
